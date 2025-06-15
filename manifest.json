@@ -1,0 +1,10 @@
+{
+    "name": "LethalAnomalies",
+    "version_number": "0.2.0",
+    "website_url": "",
+    "description": "A mod that aims to add the Pacific Drive anomalies into the game !",
+    "dependencies": [
+        "Evaisa-LethalLib-0.16.1",
+        "BepInEx-BepInExPack-5.4.2100"
+    ]
+}
