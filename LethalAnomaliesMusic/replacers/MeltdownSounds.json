@@ -1,0 +1,17 @@
+{
+    "condition": {
+        "type": "mod_installed",
+        "value": "me.loaforc.facilitymeltdown",
+        "constant": true
+    },
+    "replacements": [
+        {
+			"matches": "#FacilityMeltdown:music",
+            "sounds": [
+                {
+                    "sound": "PunchIt.wav"
+                }
+            ]
+        }
+    ]
+}

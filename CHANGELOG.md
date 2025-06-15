@@ -1,5 +1,4 @@
-## 0.2.1 Inside Tourist Release
-- Tourists now also spawn inside the facility in highly reduced groups
+## 0.2.1 v70 update
 
 ## 0.2.0 Tourist Release (The "We're So Back" update)
 - Added Tourist
