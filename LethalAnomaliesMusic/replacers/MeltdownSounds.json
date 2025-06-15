@@ -7,9 +7,13 @@
     "replacements": [
         {
 			"matches": "#FacilityMeltdown:music",
+            "condition": {
+                "type": "config",
+                "config": "Meltdown:Audio"
+            },
             "sounds": [
                 {
-                    "sound": "PunchIt.wav"
+                    "sound": "PunchItcut.ogg"
                 }
             ]
         }

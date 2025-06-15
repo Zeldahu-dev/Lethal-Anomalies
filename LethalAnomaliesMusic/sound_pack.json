@@ -1,4 +1,9 @@
 {
     "name": "LethalAnomaliesMusic",
-    "load_on_startup": []
+    "config": {
+        "Meltdown:Audio": {
+            "description": "Plays \"Punch It\" when the apparatus is taken (requires FacilityMeltdown)",
+            "default": true
+        }
+    }
 }

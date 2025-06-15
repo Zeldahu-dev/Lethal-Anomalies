@@ -36,6 +36,7 @@ namespace LethalAnomalies {
         float effectiveRange = Plugin.BoundConfig.SparkTowerEffectiveRange.Value;
         float detectionThreshold = Plugin.BoundConfig.SparkTowerDetectionThreshold.Value;
         float cooldownMutiplier = Plugin.BoundConfig.SparkTowerCooldownMultiplier.Value;
+        public GameObject colliders = null!;
 
         [Conditional("DEBUG")]
         public void LogIfDebugBuild(string text) {
@@ -57,7 +58,7 @@ namespace LethalAnomalies {
             timeSinceLastBroadcastAnomaly += Time.deltaTime;
             if (timeSinceLastBroadcastAnomaly > 15f)
             {
-                for (int i = 0; i < WalkieTalkie.allWalkieTalkies.Count ; i++)
+                for (int i = 0; i < WalkieTalkie.allWalkieTalkies.Count; i++)
                 {
                     if (Vector3.Distance(WalkieTalkie.allWalkieTalkies[i].transform.position, lightningPosition.position) < 30 && WalkieTalkie.allWalkieTalkies[i].isBeingUsed)
                     {
@@ -66,6 +67,11 @@ namespace LethalAnomalies {
                 }
                 timeSinceLastBroadcastAnomaly = 0f;
             }
+            if (StartOfRound.Instance.shipIsLeaving && colliders.activeInHierarchy)
+            {
+                colliders.SetActive(false);
+            }
+            
         }
         public override void DoAIInterval() {
             

@@ -39,13 +39,15 @@ namespace LethalAnomalies {
 //Third number is the alternate value if the condition fails
 //Last argument determines whether an item is still targetable when not held in hands, is used for items that still emit light when pocketed
         public Dictionary<string, ObjectInterest> grabbableObjectInterest = new Dictionary<string, ObjectInterest>(){
-            {"Apparatus", new ObjectInterest(0.5f)},
+            //Vanilla
+            { "Apparatus", new ObjectInterest(0.5f)},
             {"Fancy lamp", new ObjectInterest(0.7f, 1)},
             {"Flashlight", new ObjectInterest(0.8f, 1, 2, true)},
             {"Radar-booster", new ObjectInterest(0.8f, 2)},
             {"Rubber Ducky", new ObjectInterest(0.5f, 0, 2, true)},
             {"Pro-flashlight", new ObjectInterest(0.5f, 1, 2, true)},
-            {"Ainz Ooal Gown", new ObjectInterest(0.7f)},
+            //Premium Scraps
+            { "Ainz Ooal Gown", new ObjectInterest(0.7f)},
             {"Mystic Cristal", new ObjectInterest(0.6f, 0, 2, true)},
             {"Balan Statue", new ObjectInterest(0.9f)},
             {"The talking orb", new ObjectInterest(0.85f)},
@@ -339,7 +341,7 @@ namespace LethalAnomalies {
         public override void OnCollideWithEnemy(Collider other, EnemyAI collidedEnemy = null!)
         {
             base.OnCollideWithEnemy(other, collidedEnemy);
-            if (!collidedEnemy.isEnemyDead)
+            if (!collidedEnemy.isEnemyDead && isBeingLookedAt)
             {
                 RemoteExplode();
             }
