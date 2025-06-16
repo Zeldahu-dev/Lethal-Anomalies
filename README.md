@@ -15,7 +15,7 @@ It currently adds **2** new outside enemies, but much more will come in the futu
 
 We believe those used to be plasma-powered radio transmitters, but rust and anomalous influences got to them and now they have a nasty habit of zapping everyone around them. At the very least it has the courtesy of charging up if you're entering the danger zone, so stay away if you hear it.
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/lethalanomalies.png)
+![Preview](https://github.com/Zeldahu-dev/Lethal-Anomalies/blob/main/images/lethalanomalies.png)
 
 <details><summary>More info (SPOILERS)</summary>
 
@@ -31,7 +31,7 @@ As well as its spawn weight, you can configure the effective range of the tower 
 
 It is theorized the weird influences of the Zone have hit a crash test dummy production factory, allowing them to escape and roam around every single one of our operation sites. That wouldn't be so much of a problem if they didn't decide to mix in with highly volatile explosives making them explode whenever something touches it. To make matters worse, their curious nature makes them very interested in the scrap we're after, especially the shiny ones...
 
-![Preview](https://raw.githubusercontent.com/ZigzagAwaka/PremiumScraps/main/Images/lethalanomalies2.png)
+![Preview](https://github.com/Zeldahu-dev/Lethal-Anomalies/blob/main/images/lethalanomalies2.png)
 
 <details><summary>More info (SPOILERS)</summary>
 
