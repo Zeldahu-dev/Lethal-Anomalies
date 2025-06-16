@@ -19,7 +19,7 @@ namespace LethalAnomalies {
     public class Plugin : BaseUnityPlugin {
         const string PLUGIN_GUID = "Zeldahu.LethalAnomalies";
         const string PLUGIN_NAME = "Lethal Anomalies";
-        const string PLUGIN_VERSION = "0.2.0";
+        const string PLUGIN_VERSION = "0.2.1";
         internal static new ManualLogSource Logger = null!;
         internal static PluginConfig BoundConfig { get; private set; } = null!;
         public static AssetBundle? ModAssets;
@@ -45,7 +45,6 @@ namespace LethalAnomalies {
             var SparkTowerTK = ModAssets.LoadAsset<TerminalKeyword>("SparkTowerTK");
 
             var Tourist = ModAssets.LoadAsset<EnemyType>("Tourist");
-            var InsideTourist = ModAssets.LoadAsset<EnemyType>("Inside Tourist");
             var TouristTN = ModAssets.LoadAsset<TerminalNode>("TouristTN");
             var TouristTK = ModAssets.LoadAsset<TerminalKeyword>("TouristTK");
 
@@ -108,8 +107,6 @@ namespace LethalAnomalies {
 
             NetworkPrefabs.RegisterNetworkPrefab(Tourist.enemyPrefab);
             Enemies.RegisterEnemy(Tourist, TouristVanillaRarities, TouristModdedRarities, TouristTN, TouristTK);
-
-            Enemies.RegisterEnemy(InsideTourist, 100, Levels.LevelTypes.All, TouristTN, TouristTK);
 
             harmony.PatchAll();
             Logger.LogInfo($"Plugin {PLUGIN_GUID} is loaded!");
