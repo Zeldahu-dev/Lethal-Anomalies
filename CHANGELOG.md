@@ -3,6 +3,7 @@
 - Modified the track to not cut abruptly when the facility explodes, and made it an ogg
 - Spark Towers' collisions now disable on ship leaving
 - Tourists no longer explode when colliding with entities if they're not being looked at
+- Fixed the Spark Towers having bright white parasite pixels on their texture
 
 ## 0.2.0 Tourist Release (The "We're So Back" update)
 - Added Tourist
