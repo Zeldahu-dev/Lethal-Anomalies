@@ -19,13 +19,15 @@ namespace LethalAnomalies {
     public class Plugin : BaseUnityPlugin {
         const string PLUGIN_GUID = "Zeldahu.LethalAnomalies";
         const string PLUGIN_NAME = "Lethal Anomalies";
-        const string PLUGIN_VERSION = "0.2.1";
+        const string PLUGIN_VERSION = "0.2.2";
         internal static new ManualLogSource Logger = null!;
         internal static PluginConfig BoundConfig { get; private set; } = null!;
         public static AssetBundle? ModAssets;
         private readonly Harmony harmony = new Harmony(PLUGIN_GUID);
+        public static GameObject? damageTypesHandler;
 
-        private void Awake() {
+        private void Awake()
+        {
             Logger = base.Logger;
 
             BoundConfig = new PluginConfig(base.Config);
@@ -34,7 +36,8 @@ namespace LethalAnomalies {
 
             var bundleName = "lethalanomalies";
             ModAssets = AssetBundle.LoadFromFile(Path.Combine(Path.GetDirectoryName(Info.Location), bundleName));
-            if (ModAssets == null) {
+            if (ModAssets == null)
+            {
                 Logger.LogError($"Failed to load custom assets.");
                 return;
             }
@@ -48,16 +51,20 @@ namespace LethalAnomalies {
             var TouristTN = ModAssets.LoadAsset<TerminalNode>("TouristTN");
             var TouristTK = ModAssets.LoadAsset<TerminalKeyword>("TouristTK");
 
+            var ScrapBunny = ModAssets.LoadAsset<EnemyType>("Scrap Bunny");
+            var ScrapBunnyTN = ModAssets.LoadAsset<TerminalNode>("ScrapBunnyTN");
+            var ScrapBunnyTK = ModAssets.LoadAsset<TerminalKeyword>("ScrapBunnyTK");
+
             // Network Prefabs need to be registered. See https://docs-multiplayer.unity3d.com/netcode/current/basics/object-spawning/
             // LethalLib registers prefabs on GameNetworkManager.Start.
             NetworkPrefabs.RegisterNetworkPrefab(SparkTower.enemyPrefab);
             NetworkPrefabs.RegisterNetworkPrefab(SparkTower.nestSpawnPrefab);
             SparkTower.PowerLevel = BoundConfig.SparkTowerPowerLevel.Value;
             SparkTower.MaxCount = BoundConfig.SparkTowerMaxCount.Value;
-            var SparkTowerModdedRarities = new Dictionary<string, int> ();
-            var SparkTowerVanillaRarities = new Dictionary<Levels.LevelTypes, int> ();
-            var TouristModdedRarities = new Dictionary<string, int> ();
-            var TouristVanillaRarities = new Dictionary<Levels.LevelTypes, int> ();
+            var SparkTowerModdedRarities = new Dictionary<string, int>();
+            var SparkTowerVanillaRarities = new Dictionary<Levels.LevelTypes, int>();
+            var TouristModdedRarities = new Dictionary<string, int>();
+            var TouristVanillaRarities = new Dictionary<Levels.LevelTypes, int>();
             foreach (string moonrarity in BoundConfig.SparkTowerSpawnWeight.Value.Split(','))
             {
                 var entry = moonrarity.Split(':');
@@ -107,6 +114,12 @@ namespace LethalAnomalies {
 
             NetworkPrefabs.RegisterNetworkPrefab(Tourist.enemyPrefab);
             Enemies.RegisterEnemy(Tourist, TouristVanillaRarities, TouristModdedRarities, TouristTN, TouristTK);
+
+            // NetworkPrefabs.RegisterNetworkPrefab(ScrapBunny.enemyPrefab);
+            // Enemies.RegisterEnemy(ScrapBunny, 100, Levels.LevelTypes.All, ScrapBunnyTN, ScrapBunnyTK);
+
+            // damageTypesHandler = ModAssets.LoadAsset<GameObject>("Assets/ModAssets2/Generic/DamageTypesHandler.prefab");
+            // NetworkPrefabs.RegisterNetworkPrefab(damageTypesHandler);
 
             harmony.PatchAll();
             Logger.LogInfo($"Plugin {PLUGIN_GUID} is loaded!");

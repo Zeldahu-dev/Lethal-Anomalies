@@ -40,17 +40,26 @@ namespace LethalAnomalies {
 //Last argument determines whether an item is still targetable when not held in hands, is used for items that still emit light when pocketed
         public Dictionary<string, ObjectInterest> grabbableObjectInterest = new Dictionary<string, ObjectInterest>(){
             //Vanilla
-            { "Apparatus", new ObjectInterest(0.5f)},
+            {"Apparatus", new ObjectInterest(0.4f)},
             {"Fancy lamp", new ObjectInterest(0.7f, 1)},
             {"Flashlight", new ObjectInterest(0.8f, 1, 2, true)},
-            {"Radar-booster", new ObjectInterest(0.8f, 2)},
+            {"Radar-booster", new ObjectInterest(0.9f, 2)},
             {"Rubber Ducky", new ObjectInterest(0.5f, 0, 2, true)},
             {"Pro-flashlight", new ObjectInterest(0.5f, 1, 2, true)},
             //Premium Scraps
-            { "Ainz Ooal Gown", new ObjectInterest(0.7f)},
+            {"Ainz Ooal Gown", new ObjectInterest(1f)},
             {"Mystic Cristal", new ObjectInterest(0.6f, 0, 2, true)},
-            {"Balan Statue", new ObjectInterest(0.9f)},
+            {"Balan Statue", new ObjectInterest(1.5f)},
             {"The talking orb", new ObjectInterest(0.85f)},
+            //Chillax Scraps
+            {"Nokia", new ObjectInterest(1.7f, 1, 2)},
+            {"Uno Reverse Card DX", new ObjectInterest(1.1f, 0, 2, true)},
+            //Emergency Dice
+            {"Emergency Die", new ObjectInterest(1.5f)},
+            {"Gambler", new ObjectInterest(1.3f)},
+            {"The Saint", new ObjectInterest(1.9f)},
+            //Legend Weathers
+            {"Moon's Tear", new ObjectInterest(0.6f, 0, 2, true)}
         };
         public List<int> checkedItems = new List<int>();
         public Transform feet = null!;
@@ -255,7 +264,7 @@ namespace LethalAnomalies {
         public KeyValuePair<Transform, float> ScanForTargets()
         {
             //Scanning items
-            GrabbableObject[] array = UnityEngine.Object.FindObjectsOfType<GrabbableObject>();
+            GrabbableObject[] array = FindObjectsOfType<GrabbableObject>();
             bestTarget = new KeyValuePair<Transform, float>(null!, detectionRange * 4);
             for (int i = 0; i < array.Length; i++)
             {
@@ -396,7 +405,6 @@ namespace LethalAnomalies {
                     }
                 }
             }
-            LogIfDebugBuild("Spawning Explosion");
             Landmine.SpawnExplosion(transform.position, true, 3, 10, 50, 10);
             posesList[currentPose].SetActive(false);
             if (IsServer)

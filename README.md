@@ -52,3 +52,9 @@ Tourists will never spontaneously explode behind a player's back, so avoiding to
 
 - Thanks to [mrov](https://mrov.dev/) for providing code to summon lightning
 
+<details><summary>Additional credits</summary>
+
+- Electricity.wav by danielpodlovics -- https://freesound.org/s/530356/ -- License: Creative Commons 0
+
+</details>
+

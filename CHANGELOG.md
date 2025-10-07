@@ -1,3 +1,9 @@
+## 0.2.2 v73 compatibility
+- Mod is now compatible with v73 (no longer compatible with v72 and lower) 
+- Added alternative behavior for the Spark Tower (enable it in the config)
+- Added a small spark targeting players entering the range of the Spark Tower
+- Tourists now are attracted to bright items from the following mods : Chillax Scraps, Emergency Dice
+
 ## 0.2.1 v70 Maintenance
 - Added config to toggle "Punch It" playing when taking the apparatus with FacilityMeltdown installed
 - Modified the track to not cut abruptly when the facility explodes, and made it an ogg

@@ -13,6 +13,8 @@ namespace LethalAnomalies.Configuration {
         public ConfigEntry<float> SparkTowerEffectiveRange;
         public ConfigEntry<float> SparkTowerDetectionThreshold;
         public ConfigEntry<float> SparkTowerCooldownMultiplier;
+        public ConfigEntry<bool> SparkTowerAltBehaviorEnabled;
+        public ConfigEntry<int> SparkTowerAltAttackThreshold;
         public ConfigEntry<string> TouristSpawnWeight;
         public ConfigEntry<float> TouristDetectionRange;
         public ConfigEntry<float> TouristSpeed;
@@ -40,10 +42,19 @@ namespace LethalAnomalies.Configuration {
             SparkTowerCooldownMultiplier = cfg.Bind("Spark Tower", "Cooldown multiplier", 1f,
                 "Modifies how long the tower takes after attacking, before detecting players again \n" +
                 "The normal cooldown value is randomly chosen between 3-10 seconds.");
-            
-//            SparkTowerLightningLeniency = cfg.Bind("Spark Tower", "Lightning Leniency", 0.6f,
-//                "The amount in seconds before the tower acquiring the player's position, and the lightning hitting that position.\n" +
-//                "This is NOT supposed to be visible, if it is contact me on Discord to fix it.");
+
+            //            SparkTowerLightningLeniency = cfg.Bind("Spark Tower", "Lightning Leniency", 0.6f,
+            //                "The amount in seconds before the tower acquiring the player's position, and the lightning hitting that position.\n" +
+            //                "This is NOT supposed to be visible, if it is contact me on Discord to fix it.");
+
+            SparkTowerAltBehaviorEnabled = cfg.Bind("Spark Tower Alternative Behavior", "Enabled", false,
+                "Check this to enable the alternative behavior for the spark tower. \n" +
+                "While this is on, the tower will repeatedly emit sparks towards players within range and line of sight. \n" +
+                "If a player is zapped 12 times (configurable) in a row, they will be hit by lightning and die. \n" +
+                "Break line of sight to reset the counter. Recommended for larger groups.");
+
+            SparkTowerAltAttackThreshold = cfg.Bind("Spark Tower Alternative Behavior", "Alternative attack Threshold", 12,
+                "How many times a player can be zapped by the spark tower in a row before triggering the lightning.");
 
             TouristSpawnWeight = cfg.Bind("Tourist", "Spawn weight", "ExperimentationLevel:30,AssuranceLevel:40,VowLevel:25,OffenseLevel:40,MarchLevel:30,AdamanceLevel:25,RendLevel:30,DineLevel:25,ArtificeLevel:30,EmbrionLevel:25,Bozoros:55,Infernis:25,Synthesis:25",
                 "The spawn chance weight for the Tourist, relative to other existing enemies.\n" +
