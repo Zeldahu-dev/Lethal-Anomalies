@@ -1,3 +1,7 @@
+## 0.2.3 Bugfix
+- Fixed the issue that would crash the game whenever a client joined
+- Fixed the images in the readme not displaying
+
 ## 0.2.2 v73 compatibility
 - Mod is now compatible with v73 (no longer compatible with v72 and lower) 
 - Added alternative behavior for the Spark Tower (enable it in the config)

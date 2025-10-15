@@ -79,6 +79,9 @@ namespace LethalAnomalies {
         public List<GameObject> posesList = new List<GameObject>();
         public List<GameObject> boxEdgesList = new List<GameObject>();
         public GameObject collisionBox = null!;
+        public GameObject tourBusPrefab = null!;
+        Vector3 fixedPosition = Vector3.zero;
+        bool hasFixedPosition = false;
         public Light chestLight = null!;
         // 1500 when blowing up
         public float chestLightIntensity = 0;
@@ -94,9 +97,10 @@ namespace LethalAnomalies {
         public void LogIfDebugBuild(string text) {
             Plugin.Logger.LogInfo(text);
         }
-        public override void Start() {
+        public override void Start()
+        {
             base.Start();
-            if(IsServer)
+            if (IsServer)
             {
                 adhdValue = Random.Range(4, 8);
                 stalkAdhdValue = Random.Range(25, 35);
@@ -104,6 +108,14 @@ namespace LethalAnomalies {
                 StartCoroutine(NaturalSpawnCoroutine());
                 int randomPose = Random.RandomRangeInt(0, 7);
                 ChangePoseClientRPC(randomPose);
+                List<TouristAI> allTourists = FindObjectsOfType<TouristAI>().ToList();
+                if (allTourists.Count > 20)
+                {
+                    LogIfDebugBuild("There are more than 20 tourists, spawning tour bus SOMEWHERE");
+                    Vector3 tourBusSpawnLocation = allAINodes[Random.RandomRangeInt(0, allAINodes.Count())].transform.position;
+                    var tourBus = Instantiate(tourBusPrefab, transform.position, Quaternion.identity);
+                    tourBus.GetComponent<NetworkObject>().Spawn(true);
+                }
             }
             creatureAnimator.Play("Spawn");
             SwitchToBehaviourClientRpc((int)State.Roaming);
@@ -215,11 +227,11 @@ namespace LethalAnomalies {
             for (int i = 0; i < StartOfRound.Instance.connectedPlayersAmount + 1; i++)
             {
                 PlayerControllerB tempPlayer = StartOfRound.Instance.allPlayerScripts[i];
-                if(PlayerIsTargetable(tempPlayer))
+                if (PlayerIsTargetable(tempPlayer))
                 {
                     for (int j = 0; j < boxEdgesList.Count; j++)
                     {
-                        if(tempPlayer.HasLineOfSightToPosition(boxEdgesList[j].transform.position, range: 150) && PlayerHasHorizontalLOS(tempPlayer))
+                        if (tempPlayer.HasLineOfSightToPosition(boxEdgesList[j].transform.position, range: 150) && PlayerHasHorizontalLOS(tempPlayer))
                         {
                             isBeingLookedAt = true;
                         }
@@ -231,9 +243,19 @@ namespace LethalAnomalies {
             {
                 hasChangedPose = false;
                 agent.speed = 0f;
+                if (!hasFixedPosition)
+                {
+                    fixedPosition = transform.position;
+                    hasFixedPosition = true;
+                }
+                else
+                {
+                    transform.position = fixedPosition;
+                }
             }
             else
             {
+                hasFixedPosition = false;
                 agent.speed = walkSpeed;
                 timeSpentMoving += Time.deltaTime;
                 if (!hasChangedPose)
