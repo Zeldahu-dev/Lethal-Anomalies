@@ -15,6 +15,7 @@ namespace LethalAnomalies {
 
     class TourBusAI : EnemyAI
     {
+        bool hasStartedExploding = false;
         enum State
         {
             Generic,
@@ -23,6 +24,58 @@ namespace LethalAnomalies {
         {
             base.Start();
             return;
+        }
+
+        public override void OnCollideWithPlayer(Collider other)
+        {
+            base.OnCollideWithPlayer(other);
+            if (IsServer && !hasStartedExploding)
+            {
+                hasStartedExploding = true;
+                ExplosionClientRpc();
+            }
+        }
+
+        public override void OnCollideWithEnemy(Collider other, EnemyAI collidedEnemy = null!)
+        {
+            base.OnCollideWithEnemy(other, collidedEnemy);
+            if (IsServer && !hasStartedExploding && Plugin.BoundConfig.CanMobsTriggerTourBus.Value)
+            {
+                hasStartedExploding = true;
+                ExplosionClientRpc();
+            }
+        }
+
+        public override void HitEnemy(int force = 1, PlayerControllerB playerWhoHit = null, bool playHitSFX = false, int hitID = -1)
+        {
+            base.HitEnemy(force, playerWhoHit, playHitSFX, hitID);
+            if (IsServer && !hasStartedExploding && Plugin.BoundConfig.CanMobsTriggerTourBus.Value)
+            {
+                hasStartedExploding = true;
+                ExplosionClientRpc();
+            }
+        }
+
+        [ClientRpc]
+        public void ExplosionClientRpc()
+        {
+            StartCoroutine(ExplosionCoroutine());
+        }
+
+        private IEnumerator ExplosionCoroutine()
+        {
+            UnityEngine.Debug.Log("Exploding tour bus");
+            creatureAnimator.Play("ExplosionPriming");
+            yield return new WaitForSeconds(5f);
+            Landmine.SpawnExplosion(transform.position, false, 15, 25, 50, 200);
+            if (IsServer)
+            {
+                foreach (TouristAI tourist in FindObjectsOfType<TouristAI>())
+                {
+                    tourist.RemoteExplode();
+                }
+            }
+            yield break;
         }
     }
 }

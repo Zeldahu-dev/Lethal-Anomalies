@@ -273,7 +273,7 @@ namespace LethalAnomalies {
             
                 for (int i = 0; i < StartOfRound.Instance.connectedPlayersAmount + 1; i++)
                 {
-                    if (Vector3.Distance(feet.position, StartOfRound.Instance.allPlayerScripts[i].transform.position) <= 3 && !isAlreadyAttacking)
+                    if (Vector3.Distance(feet.position, StartOfRound.Instance.allPlayerScripts[i].transform.position) <= 2.5 && !isAlreadyAttacking)
                     {
                         RemoteExplode();
                     }

@@ -18,6 +18,8 @@ namespace LethalAnomalies.Configuration {
         public ConfigEntry<string> TouristSpawnWeight;
         public ConfigEntry<float> TouristDetectionRange;
         public ConfigEntry<float> TouristSpeed;
+        public ConfigEntry<int> TourBusSpawnThreshold;
+        public ConfigEntry<bool> CanMobsTriggerTourBus;
 //        public ConfigEntry<float> SparkTowerLightningLeniency;
         public PluginConfig(ConfigFile cfg)
         {
@@ -66,6 +68,12 @@ namespace LethalAnomalies.Configuration {
 
             TouristSpeed = cfg.Bind("Tourist", "Speed Multiplier", 1f,
                 "The multiplier for tourists speed");
+
+            TourBusSpawnThreshold = cfg.Bind("Tour Bus", "Spawn Threshold", 20,
+                "How many tourists are required to spawn before a tour bus appears on the moon");
+
+            CanMobsTriggerTourBus = cfg.Bind("Tour Bus", "Can be triggered by mobs", false,
+                "Can mobs trigger the tour bus by walking into it. Enabling this will make you run the risk of tourists all blowing up randomly");
             ClearUnusedEntries(cfg);
         }
 
