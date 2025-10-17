@@ -109,11 +109,11 @@ namespace LethalAnomalies {
                 int randomPose = Random.RandomRangeInt(0, 7);
                 ChangePoseClientRPC(randomPose);
                 List<TouristAI> allTourists = FindObjectsOfType<TouristAI>().ToList();
-                if (allTourists.Count > 20)
+                if (allTourists.Count > 20 && FindObjectOfType<TourBusAI>() == null)
                 {
                     LogIfDebugBuild("There are more than 20 tourists, spawning tour bus SOMEWHERE");
                     Vector3 tourBusSpawnLocation = allAINodes[Random.RandomRangeInt(0, allAINodes.Count())].transform.position;
-                    ExternalScripts.Spawn(GetEnemies.TourBus, transform.position);
+                    ExternalScripts.Spawn(GetEnemies.TourBus, tourBusSpawnLocation);
                 }
             }
             creatureAnimator.Play("Spawn");
