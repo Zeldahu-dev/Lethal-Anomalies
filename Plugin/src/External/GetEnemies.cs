@@ -14,7 +14,7 @@ namespace LethalAnomalies.External
         public static SpawnableEnemyWithRarity Masked, HoardingBug, SnareFlea, Jester, Bracken, Thumper, CoilHead,
                                                CircuitBees, EarthLeviathan, BunkerSpider, ForestKeeper, GhostGirl,
                                                TulipSnake, EyelessDog, Maneater, Nutcracker, Barber, Butler, OldBird,
-                                               ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower, Tourist;
+                                               ShyGuy, RedwoodTitan, RedwoodGiant, Locker, Bruce, SparkTower, Tourist, TourBus;
         public static SpawnableMapObject Landmine, Turret, SpikeTrap, Seamine, BigBertha;
 
         [HarmonyPatch("Start")]
@@ -85,6 +85,8 @@ namespace LethalAnomalies.External
                         SparkTower = enemy;
                     else if (enemy.enemyType.enemyName == "Tourist" && Tourist == null)
                         Tourist = enemy;
+                    else if (enemy.enemyType.enemyName == "Tour Bus" && TourBus == null)
+                        TourBus = enemy;
                 }
 
                 foreach (var trap in level.spawnableMapObjects)

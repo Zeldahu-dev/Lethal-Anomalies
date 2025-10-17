@@ -113,8 +113,7 @@ namespace LethalAnomalies {
                 {
                     LogIfDebugBuild("There are more than 20 tourists, spawning tour bus SOMEWHERE");
                     Vector3 tourBusSpawnLocation = allAINodes[Random.RandomRangeInt(0, allAINodes.Count())].transform.position;
-                    var tourBus = Instantiate(tourBusPrefab, transform.position, Quaternion.identity);
-                    tourBus.GetComponent<NetworkObject>().Spawn(true);
+                    ExternalScripts.Spawn(GetEnemies.TourBus, transform.position);
                 }
             }
             creatureAnimator.Play("Spawn");
