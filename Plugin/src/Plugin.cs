@@ -51,6 +51,10 @@ namespace LethalAnomalies {
             var TouristTN = ModAssets.LoadAsset<TerminalNode>("TouristTN");
             var TouristTK = ModAssets.LoadAsset<TerminalKeyword>("TouristTK");
 
+            var TourBus = ModAssets.LoadAsset<EnemyType>("Tour Bus");
+            var TourBusTN = ModAssets.LoadAsset<TerminalNode>("TourBusTN");
+            var TourBusTK = ModAssets.LoadAsset<TerminalKeyword>("TourBusTK");
+
             var ScrapBunny = ModAssets.LoadAsset<EnemyType>("Scrap Bunny");
             var ScrapBunnyTN = ModAssets.LoadAsset<TerminalNode>("ScrapBunnyTN");
             var ScrapBunnyTK = ModAssets.LoadAsset<TerminalKeyword>("ScrapBunnyTK");
@@ -115,10 +119,13 @@ namespace LethalAnomalies {
             NetworkPrefabs.RegisterNetworkPrefab(Tourist.enemyPrefab);
             Enemies.RegisterEnemy(Tourist, TouristVanillaRarities, TouristModdedRarities, TouristTN, TouristTK);
 
-            // NetworkPrefabs.RegisterNetworkPrefab(ScrapBunny.enemyPrefab);
-            // Enemies.RegisterEnemy(ScrapBunny, 100, Levels.LevelTypes.All, ScrapBunnyTN, ScrapBunnyTK);
+            NetworkPrefabs.RegisterNetworkPrefab(TourBus.enemyPrefab);
+            Enemies.RegisterEnemy(TourBus, 0, Levels.LevelTypes.All, ScrapBunnyTN, ScrapBunnyTK);
 
-            // damageTypesHandler = ModAssets.LoadAsset<GameObject>("Assets/ModAssets2/Generic/DamageTypesHandler.prefab");
+            NetworkPrefabs.RegisterNetworkPrefab(ScrapBunny.enemyPrefab);
+            Enemies.RegisterEnemy(ScrapBunny, 100, Levels.LevelTypes.All, ScrapBunnyTN, ScrapBunnyTK);
+
+            damageTypesHandler = ModAssets.LoadAsset<GameObject>("Assets/ModAssets2/Generic/DamageTypesHandler.prefab");
             // NetworkPrefabs.RegisterNetworkPrefab(damageTypesHandler);
 
             harmony.PatchAll();

@@ -15,6 +15,10 @@ namespace LethalAnomalies {
 
     class TourBusAI : EnemyAI
     {
+        enum State
+        {
+            Generic,
+        }
         public override void Start()
         {
             base.Start();
