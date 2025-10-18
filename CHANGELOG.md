@@ -2,7 +2,7 @@
 - Added Tour Bus
 - Added configs for Tourists : Tour Bus spawn threshold, Min group size, Max group size
 - Tourists can no longer pathfind under the ship
-- Lowered the range tourists require to explode (should prevent them from blowing up when not looked at)
+- Tourists now use collisions instead of range to explode (this should prevent them from exploding when right behind a player)
 - Tourists that are being looked at can no longer be pushed by tourists outside view range
 - Fixed the tourists' texture having parasite white pixels
 - Tourists now have a working map dot
