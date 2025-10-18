@@ -19,7 +19,7 @@ namespace LethalAnomalies {
     public class Plugin : BaseUnityPlugin {
         const string PLUGIN_GUID = "Zeldahu.LethalAnomalies";
         const string PLUGIN_NAME = "Lethal Anomalies";
-        const string PLUGIN_VERSION = "0.2.3";
+        const string PLUGIN_VERSION = "0.3.0";
         internal static new ManualLogSource Logger = null!;
         internal static PluginConfig BoundConfig { get; private set; } = null!;
         public static AssetBundle? ModAssets;

@@ -18,6 +18,8 @@ namespace LethalAnomalies.Configuration {
         public ConfigEntry<string> TouristSpawnWeight;
         public ConfigEntry<float> TouristDetectionRange;
         public ConfigEntry<float> TouristSpeed;
+        public ConfigEntry<int> TouristMinGroupSize;
+        public ConfigEntry<int> TouristMaxGroupSize;
         public ConfigEntry<int> TourBusSpawnThreshold;
         public ConfigEntry<bool> CanMobsTriggerTourBus;
 //        public ConfigEntry<float> SparkTowerLightningLeniency;
@@ -29,20 +31,20 @@ namespace LethalAnomalies.Configuration {
                 "Goes up from 0, lower is more rare, 100 and up is very common.");
             
             SparkTowerPowerLevel = cfg.Bind("Spark Tower", "Power level", 1f,
-                "The power level of the tower. General setting that applies for all moons");
+                "The power level of the tower. General setting that applies for all moons.");
             
             SparkTowerMaxCount = cfg.Bind("Spark Tower", "Max count", 10,
                 "The maximum amount of towers that spawn on a moon. General setting that applies for all moons.");
             
             SparkTowerEffectiveRange = cfg.Bind("Spark Tower", "Effective Range", 30f,
-                "The range at which the tower detects and attacks enemies");
+                "The range at which the tower detects and attacks enemies.");
             
             SparkTowerDetectionThreshold = cfg.Bind("Spark Tower", "Attack speed", 2.5f,
                 "Determines how long it takes for the tower to attack players while they stand in its detection range.\n" +
-                "Lower values make the tower attack faster, higher values require players to stand close for longer before being attacked");
+                "Lower values make the tower attack faster, higher values require players to stand close for longer before being attacked.");
             
             SparkTowerCooldownMultiplier = cfg.Bind("Spark Tower", "Cooldown multiplier", 1f,
-                "Modifies how long the tower takes after attacking, before detecting players again \n" +
+                "Modifies how long the tower takes after attacking, before detecting players again. \n" +
                 "The normal cooldown value is randomly chosen between 3-10 seconds.");
 
             //            SparkTowerLightningLeniency = cfg.Bind("Spark Tower", "Lightning Leniency", 0.6f,
@@ -64,16 +66,22 @@ namespace LethalAnomalies.Configuration {
                 "Goes up from 0, lower is more rare, 100 and up is very common.");
             
             TouristDetectionRange = cfg.Bind("Tourist", "Detection Range", 50f,
-                "The range at which the Tourists are able to detect potential targets");
+                "The range at which the Tourists are able to detect potential targets.");
 
             TouristSpeed = cfg.Bind("Tourist", "Speed Multiplier", 1f,
                 "The multiplier for tourists speed");
 
+            TouristMinGroupSize = cfg.Bind("Tourist", "Minimum group size", 5,
+                "The smallest possible amount of tourists a naturally spawned tourist will create around itself.");
+
+            TouristMaxGroupSize = cfg.Bind("Tourist", "Maximum group size", 15,
+                "The biggest possible amount of tourists a naturally spawned tourist will create around itself.");
+
             TourBusSpawnThreshold = cfg.Bind("Tour Bus", "Spawn Threshold", 20,
-                "How many tourists are required to spawn before a tour bus appears on the moon");
+                "How many tourists are required to spawn before a tour bus appears on the moon.");
 
             CanMobsTriggerTourBus = cfg.Bind("Tour Bus", "Can be triggered by mobs", false,
-                "Can mobs trigger the tour bus by walking into it. Enabling this will make you run the risk of tourists all blowing up randomly");
+                "Determines whether mobs can trigger the tour bus by walking into it. Enabling this will make you run the risk of tourists all blowing up randomly.");
             ClearUnusedEntries(cfg);
         }
 

@@ -458,7 +458,7 @@ namespace LethalAnomalies {
             yield return new WaitForSeconds(0.1f);
             if (isNaturallySpawned)
             {
-                for (int i = 0; i < Random.RandomRangeInt(5, 16); i++)
+                for (int i = 0; i < Random.RandomRangeInt(Plugin.BoundConfig.TouristMinGroupSize.Value, Plugin.BoundConfig.TouristMaxGroupSize.Value + 1); i++)
                 {
                     Vector3 spawnPosition = transform.position + new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10));
                     spawnPosition = RoundManager.Instance.GetNavMeshPosition(spawnPosition);

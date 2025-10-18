@@ -1,3 +1,10 @@
+## 0.3.0 Tour Bus Release
+- Added Tour Bus
+- Added configs for Tourists : Tour Bus spawn threshold, Min group size, Max group size
+- Tourists can no longer pathfind under the ship
+- Lowered the range tourists require to explode (should prevent them from blowing up when not looked at)
+- Tourists that are being looked at can no longer be pushed by tourists outside view range
+
 ## 0.2.3 Bugfix
 - Fixed the issue that would crash the game whenever a client joined
 - Fixed the images in the readme not displaying
