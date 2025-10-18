@@ -29,18 +29,18 @@ namespace LethalAnomalies.External
             }
         }
 
-        [HarmonyPostfix]
-        [HarmonyPatch("OnPlayerConnectedClientRpc")]
-        public static void OnPlayerConnectedClientRpc(ref StartOfRound __instance)
-        {
-            PlayerControllerB[] array = Object.FindObjectsByType<PlayerControllerB>(FindObjectsSortMode.None);
-            for (int i = 0; i < array.Length; i++)
-            {
-                if (array[i].transform.Find("DamageTypesHandler") == null)
-                {
-                    Object.Instantiate(Plugin.damageTypesHandler, array[i].transform);
-                }
-            }
-        }
+        // [HarmonyPostfix]
+        // [HarmonyPatch("OnPlayerConnectedClientRpc")]
+        // public static void OnPlayerConnectedClientRpc(ref StartOfRound __instance)
+        // {
+        //     PlayerControllerB[] array = Object.FindObjectsByType<PlayerControllerB>(FindObjectsSortMode.None);
+        //     for (int i = 0; i < array.Length; i++)
+        //     {
+        //         if (array[i].transform.Find("DamageTypesHandler") == null)
+        //         {
+        //             Object.Instantiate(Plugin.damageTypesHandler, array[i].transform);
+        //         }
+        //     }
+        // }
     }
 }

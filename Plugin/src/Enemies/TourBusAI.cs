@@ -49,7 +49,7 @@ namespace LethalAnomalies {
         public override void HitEnemy(int force = 1, PlayerControllerB playerWhoHit = null!, bool playHitSFX = true, int hitID = -1)
         {
             base.HitEnemy(force, playerWhoHit, playHitSFX, hitID);
-            if (IsServer && playerWhoHit != null && playerWhoHit.playerClientId == GameNetworkManager.Instance.localPlayerController.playerClientId)
+            if (playerWhoHit != null && playerWhoHit.playerClientId == GameNetworkManager.Instance.localPlayerController.playerClientId)
             {
                 hasStartedExploding = true;
                 ExplosionServerRpc();
@@ -73,7 +73,7 @@ namespace LethalAnomalies {
             UnityEngine.Debug.Log("Exploding tour bus");
             creatureAnimator.Play("ExplosionPriming");
             yield return new WaitForSeconds(5f);
-            Landmine.SpawnExplosion(transform.position, false, 15, 25, 50, 200);
+            Landmine.SpawnExplosion(transform.position + new Vector3(0.0f, 3f, 0.0f), false, 30, 35, 50, 200, goThroughCar: true);
             if (IsServer)
             {
                 foreach (TouristAI tourist in FindObjectsOfType<TouristAI>())

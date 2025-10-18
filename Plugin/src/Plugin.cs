@@ -122,10 +122,10 @@ namespace LethalAnomalies {
             NetworkPrefabs.RegisterNetworkPrefab(TourBus.enemyPrefab);
             Enemies.RegisterEnemy(TourBus, 0, Levels.LevelTypes.All, ScrapBunnyTN, ScrapBunnyTK);
 
-            NetworkPrefabs.RegisterNetworkPrefab(ScrapBunny.enemyPrefab);
-            Enemies.RegisterEnemy(ScrapBunny, 100, Levels.LevelTypes.All, ScrapBunnyTN, ScrapBunnyTK);
+            // NetworkPrefabs.RegisterNetworkPrefab(ScrapBunny.enemyPrefab);
+            // Enemies.RegisterEnemy(ScrapBunny, 100, Levels.LevelTypes.All, ScrapBunnyTN, ScrapBunnyTK);
 
-            damageTypesHandler = ModAssets.LoadAsset<GameObject>("Assets/ModAssets2/Generic/DamageTypesHandler.prefab");
+            // damageTypesHandler = ModAssets.LoadAsset<GameObject>("Assets/ModAssets2/Generic/DamageTypesHandler.prefab");
             // NetworkPrefabs.RegisterNetworkPrefab(damageTypesHandler);
 
             harmony.PatchAll();
