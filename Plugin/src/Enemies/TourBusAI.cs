@@ -16,6 +16,7 @@ namespace LethalAnomalies {
     class TourBusAI : EnemyAI
     {
         bool hasStartedExploding = false;
+        public bool hasExploded = false;
         enum State
         {
             Generic,
@@ -78,6 +79,7 @@ namespace LethalAnomalies {
             {
                 tourist.ExplodeFromTourBus();
             }
+            hasExploded = true;
             yield break;
         }
     }

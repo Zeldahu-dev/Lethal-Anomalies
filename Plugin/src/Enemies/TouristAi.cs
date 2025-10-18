@@ -463,7 +463,8 @@ namespace LethalAnomalies {
         private IEnumerator NaturalSpawnCoroutine()
         {
             yield return new WaitForSeconds(0.1f);
-            if (isNaturallySpawned)
+            TourBusAI tourBus = FindObjectOfType<TourBusAI>();
+            if (isNaturallySpawned && (tourBus == null || !tourBus.hasExploded))
             {
                 for (int i = 0; i < Random.RandomRangeInt(Plugin.BoundConfig.TouristMinGroupSize.Value, Plugin.BoundConfig.TouristMaxGroupSize.Value + 1); i++)
                 {

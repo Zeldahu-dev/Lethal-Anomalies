@@ -5,6 +5,7 @@
 - Lowered the range tourists require to explode (should prevent them from blowing up when not looked at)
 - Tourists that are being looked at can no longer be pushed by tourists outside view range
 - Fixed the tourists' texture having parasite white pixels
+- Tourists now have a working map dot
 
 ## 0.2.3 Bugfix
 - Fixed the issue that would crash the game whenever a client joined
