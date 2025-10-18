@@ -82,7 +82,7 @@ namespace LethalAnomalies {
         public GameObject tourBusPrefab = null!;
         Vector3 fixedPosition = Vector3.zero;
         bool hasFixedPosition = false;
-        bool isExplodingFromTourBus = false;
+        public bool isExplodingFromTourBus = false;
         public Light chestLight = null!;
         // 1500 when blowing up
         public float chestLightIntensity = 0;
@@ -271,14 +271,6 @@ namespace LethalAnomalies {
             if (IsServer)
             {
                 SyncPositionToClients();
-            
-                for (int i = 0; i < StartOfRound.Instance.connectedPlayersAmount + 1; i++)
-                {
-                    if (Vector3.Distance(feet.position, StartOfRound.Instance.allPlayerScripts[i].transform.position) <= 2.5 && !isAlreadyAttacking)
-                    {
-                        RemoteExplode();
-                    }
-                }
                 SetChestLightIntensityClientRPC(chestLightIntensity);
             }
         }
@@ -378,6 +370,12 @@ namespace LethalAnomalies {
             }
         }
 
+        public override void OnCollideWithPlayer(Collider other)
+        {
+            base.OnCollideWithPlayer(other);
+            ExplodeFromTourBus();
+        }
+
         public void RemoteExplode()
         {
             if (!isAlreadyAttacking && IsServer)
@@ -413,8 +411,11 @@ namespace LethalAnomalies {
 
         public void ExplodeFromTourBus()
         {
-            isExplodingFromTourBus = true;
-            StartCoroutine(AttackCoroutine());
+            if (!isAlreadyAttacking)
+            {
+                isAlreadyAttacking = true;
+                StartCoroutine(AttackCoroutine());
+            }
         }
 
         private IEnumerator AttackCoroutine()

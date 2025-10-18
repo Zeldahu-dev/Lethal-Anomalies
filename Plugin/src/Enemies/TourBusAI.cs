@@ -77,6 +77,7 @@ namespace LethalAnomalies {
             Landmine.SpawnExplosion(transform.position + new Vector3(0.0f, 3f, 0.0f), false, 30, 35, 50, 200, goThroughCar: true);
             foreach (TouristAI tourist in FindObjectsOfType<TouristAI>())
             {
+                tourist.isExplodingFromTourBus = true;
                 tourist.ExplodeFromTourBus();
             }
             hasExploded = true;
