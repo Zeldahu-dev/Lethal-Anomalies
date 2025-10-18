@@ -3,7 +3,7 @@
 *"The Olympic Peninsula, the crown jewel of the Pacific Northwest! Its unmatched views and quiet solitude offer everything you need in the most beautiful place on Earth! Now coming directly onto your favorite moons!"*
 
 **Lethal Anomalies** is a mod that aims to bring the anomalies from **Pacific Drive** into the game!
-It currently adds **2** new outside enemies, but much more will come in the future.
+It currently adds **3** new outside enemies, but much more will come in the future.
 
 ## Contents
 
@@ -38,6 +38,20 @@ It is theorized the weird influences of the Zone have hit a crash test dummy pro
 The tourists are mildly dangerous entities that move when you do not look at them, and are attracted to both players and shiny scrap items (scrap mods compatibility will be added over time). As they make their way to their target, they can be distracted if you drop a shiny item on the ground. However, once they start stalking their target, which is indicated by a red light on their chests, they can no longer be distracted and will keep on following their target for ~30 seconds before getting bored and looking for a new target. Getting too close, shooting it, or making an enemy walk into a tourist will trigger it to explode, also triggering nearby tourists to create a chain reaction.
 
 Tourists will never spontaneously explode behind a player's back, so avoiding to walk backwards will significantly reduce the odds of dying to them.
+
+</details>
+
+### \- - - - - - 
+
+### The Tour Bus
+
+Looks like somehow our tourist problem can get worse. On moons with high concentrations of them, we've noticed some bigger, unmoving masses of several tourists merged together. Not only that's creepy, but also it hints at the existence of some sort of hive mind between them... Perhaps you'll figure out a way to use that to our advantage.
+
+![Preview](https://raw.githubusercontent.com/Zeldahu-dev/Lethal-Anomalies/refs/heads/main/images/tourbus.png)
+
+<details><summary>More info (SPOILERS)</summary>
+
+If enough tourists exist on a moon at once, a tour bus will spawn at a random spot on the moon (the amount of tourists required to trigger this is configurable). Walking into or shooting the tour bus will cause a massive explosion, triggering every tourist on the moon. Afterwards, if a tourist spawns, it will not be able to spawn other tourists around itself and will stay isolated.
 
 </details>
 
