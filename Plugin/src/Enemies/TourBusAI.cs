@@ -74,12 +74,9 @@ namespace LethalAnomalies {
             creatureAnimator.Play("ExplosionPriming");
             yield return new WaitForSeconds(5f);
             Landmine.SpawnExplosion(transform.position + new Vector3(0.0f, 3f, 0.0f), false, 30, 35, 50, 200, goThroughCar: true);
-            if (IsServer)
+            foreach (TouristAI tourist in FindObjectsOfType<TouristAI>())
             {
-                foreach (TouristAI tourist in FindObjectsOfType<TouristAI>())
-                {
-                    tourist.RemoteExplode();
-                }
+                tourist.ExplodeFromTourBus();
             }
             yield break;
         }

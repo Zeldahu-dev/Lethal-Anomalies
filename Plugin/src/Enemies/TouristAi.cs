@@ -82,6 +82,7 @@ namespace LethalAnomalies {
         public GameObject tourBusPrefab = null!;
         Vector3 fixedPosition = Vector3.zero;
         bool hasFixedPosition = false;
+        bool isExplodingFromTourBus = false;
         public Light chestLight = null!;
         // 1500 when blowing up
         public float chestLightIntensity = 0;
@@ -410,6 +411,12 @@ namespace LethalAnomalies {
             StartCoroutine(AttackCoroutine());
         }
 
+        public void ExplodeFromTourBus()
+        {
+            isExplodingFromTourBus = true;
+            StartCoroutine(AttackCoroutine());
+        }
+
         private IEnumerator AttackCoroutine()
         {
             creatureAnimator.Play("Death");
@@ -420,7 +427,7 @@ namespace LethalAnomalies {
                 if (Vector3.Distance(transform.position, array[i].transform.position) <= 10)
                 {
                     collisionBox.SetActive(false);
-                    if (IsServer)
+                    if (IsServer && !isExplodingFromTourBus)
                     {
                         array[i].SendMessage("RemoteExplode");
                     }
