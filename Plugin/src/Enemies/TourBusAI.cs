@@ -46,14 +46,20 @@ namespace LethalAnomalies {
             }
         }
 
-        public override void HitEnemy(int force = 1, PlayerControllerB playerWhoHit = null, bool playHitSFX = false, int hitID = -1)
+        public override void HitEnemy(int force = 1, PlayerControllerB playerWhoHit = null!, bool playHitSFX = true, int hitID = -1)
         {
             base.HitEnemy(force, playerWhoHit, playHitSFX, hitID);
-            if (IsServer && !hasStartedExploding && Plugin.BoundConfig.CanMobsTriggerTourBus.Value)
+            if (IsServer && playerWhoHit != null && playerWhoHit.playerClientId == GameNetworkManager.Instance.localPlayerController.playerClientId)
             {
                 hasStartedExploding = true;
-                ExplosionClientRpc();
+                ExplosionServerRpc();
             }
+        }
+
+        [ServerRpc(RequireOwnership = false)]
+        public void ExplosionServerRpc()
+        {
+            ExplosionClientRpc();
         }
 
         [ClientRpc]
